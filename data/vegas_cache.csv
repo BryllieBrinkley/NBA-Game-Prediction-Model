@@ -1,0 +1,14 @@
+home_team_name,away_team_name,home_moneyline,away_moneyline,home_spread,away_spread,vegas_home_prob,vegas_away_prob
+Detroit Pistons,Memphis Grizzlies,-3500,1060,-15.5,15.5,0.9185520361990951,0.081447963800905
+Indiana Pacers,New York Knicks,1060,-3500,15.5,-15.5,0.081447963800905,0.9185520361990951
+Toronto Raptors,Phoenix Suns,-115,-111,-1.5,1.5,0.5041554124246831,0.4958445875753168
+Dallas Mavericks,Cleveland Cavaliers,1800,-10000,20.5,-20.5,0.050474762618690654,0.9495252373813095
+Houston Rockets,New Orleans Pelicans,-265,200,-5.5,5.5,0.685344827586207,0.3146551724137931
+Golden State Warriors,Minnesota Timberwolves,198,-240,6.0,-6.0,0.3222137983320697,0.6777862016679302
+Portland Trail Blazers,Utah Jazz,-1400,830,-15.5,15.5,0.8966942148760332,0.10330578512396695
+Los Angeles Clippers,Chicago Bulls,-770,540,-13.0,13.0,0.849948258020007,0.1500517419799931
+Philadelphia 76ers,Brooklyn Nets,-430,340,-9.0,9.0,0.7811725846407928,0.21882741535920724
+San Antonio Spurs,Charlotte Hornets,-240,198,-6.5,6.5,0.6777862016679302,0.3222137983320697
+Boston Celtics,Washington Wizards,-2200,1100,-19.5,19.5,0.9198606271777005,0.08013937282229965
+Los Angeles Lakers,Denver Nuggets,120,-142,2.5,-2.5,0.43650793650793646,0.5634920634920635
+Miami Heat,Orlando Magic,-166,140,-3.5,3.5,0.5996387718242023,0.4003612281757977
