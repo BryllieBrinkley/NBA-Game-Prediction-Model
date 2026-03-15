@@ -17,13 +17,13 @@ This project:
 
 # Skills Demonstrated
 Skills Used:
-• Machine Learning  
-• Feature Engineering
-• Data Processing Pipelines
-• API Integration  
-• Data Analytics
-• Model Evaluation  
-• Python Development
+- Machine Learning  
+- Feature Engineering
+- Data Processing Pipelines
+- API Integration  
+- Data Analytics
+- Model Evaluation  
+- Python Development
 
 Technologies used(*working):
 - nba api
