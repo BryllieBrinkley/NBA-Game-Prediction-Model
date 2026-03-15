@@ -9,10 +9,10 @@ My original motivation for this project was to build my own machine learning mod
 
 # What This Project Does
 This project:
-• Collects historical NBA game data  
-• Creates useful features from that data to train the ML model.
-• Trains a machine learning model  
-• Uses that model to predict future games
+- Collects historical NBA game data  
+- Creates useful features from that data to train the ML model.
+- Trains a machine learning model
+- Uses that model to predict future games
 - Plan to expand project with new features below
 
 # Skills Demonstrated
