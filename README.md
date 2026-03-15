@@ -1,7 +1,7 @@
 # NBA Game Prediction Model
 Personal Machine Learning Project
 
-This project uses machine learning to predict ** NBA game winners** and point totals using historical NBA data from the 2019–2024 seasons.
+This project uses machine learning to predict NBA game winners and point totals using historical NBA data from the 2019–2024 seasons.
 
 The model was trained on around 10,000 past games and achieved 67.8% accuracy predicting game winners.
 
