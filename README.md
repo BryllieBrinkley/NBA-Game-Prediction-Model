@@ -1,65 +1,144 @@
 # NBA Game Prediction Model
-Personal Machine Learning Project
 
-This project uses machine learning to predict NBA game winners and point totals using historical NBA data from the 2019–2024 seasons.
+## Overview
 
-The model was trained on around 10,000 past games and achieved 67.8% accuracy predicting game winners.
+This project explores how machine learning can be used to predict **NBA game outcomes** using historical performance data.
 
-My original motivation for this project was to build my own machine learning model capable of predicting NBA game outcomes for sports betting. I wanted to challenge existing prediction models and see if I could develop one that performs competitively using historical NBA data. Through this process I have built an end-to-end pipeline, including collecting data, engineering meaningful features, training models, and evaluating predictions. This project was especially meaningful to me because basketball is a sport I have been passionate about since my childhood, and I was very pleased to see my model get the first 4 picks of the day correctly the very next day. 
+Using NBA game data from the **2019–2024 seasons (~10,000 games)**, I built an end-to-end machine learning pipeline that processes game data, engineers predictive features, trains models, and generates predictions for upcoming games.
+
+The current model achieved **67.8% accuracy predicting NBA game winners**, which is considered strong for sports prediction problems due to the naturally unpredictable nature of game outcomes.
+
+The motivation behind this project was to apply my knowledge of **Python and machine learning** to a real-world dataset while building a complete system similar to what a machine learning engineer might develop in practice. As someone who has been passionate about basketball for many years and played growing up, this project was also a fun way to combine sports with data science.
+
+---
 
 # What This Project Does
-This project:
-- Collects historical NBA game data  
-- Creates useful features from that data to train the ML model.
-- Trains a machine learning model
-- Uses that model to predict future games
-- Plan to expand project with new features below
 
-# Skills Demonstrated
-Skills Used:
-- Machine Learning  
-- Feature Engineering
-- Data Processing Pipelines
-- API Integration  
-- Data Analytics
-- Model Evaluation  
-- Python Development
+This system:
 
-Technologies used(*working):
-- nba api
+• Collects historical NBA game data  
+• Engineers predictive features from past games  
+• Trains a machine learning model to predict game winners  
+• Uses the trained model to generate predictions for upcoming games  
+• Compares model probabilities with Vegas implied probabilities  
+
+The project is structured to make it easy to experiment with new features, models, and prediction methods.
+
+---
+
+# Machine Learning Approach
+
+The model predicts whether the **home team will win a game** using historical performance data.
+
+Feature engineering includes:
+
+• **Team Elo ratings** to estimate team strength over time  
+• **Rolling performance metrics** (points, rebounds, assists over recent games)  
+• **Offensive and defensive efficiency ratings**  
+• **Rest advantage and schedule difficulty**  
+• **Home court performance trends**  
+• **Matchup-based feature differences between teams**
+
+To simulate real prediction conditions, the model uses **time-aware feature engineering** and a **chronological train/test split**, ensuring that predictions only use information available before each game.
+
+---
+
+# Model Performance
+
+Dataset: **NBA games from 2019–2024 seasons (~10,000 games)**
+
+Model: **Random Forest Classifier**
+
+Performance:
+
+• **67.8% accuracy predicting NBA game winners**
+
+Because sports outcomes are inherently volatile, models that achieve **60–65% accuracy** are generally considered strong in sports analytics. The current model performs above that benchmark.
+
+---
+
+# Technologies Used
+
 - Python  
 - Pandas  
 - NumPy  
-- Scikit-Learn
-- XGBoost (for baseline model)
+- Scikit-Learn  
+- Random Forest
+- NBA API Integration
+- Joblib
+- Plans to test XGBoost and ensemble methods
 
-# Model Performance:
-Training data - NBA games from 2019–2024 seasons
-Model performance - Model achieved a 67.8% accuracy predicting NBA game winners. Due to the unpredicatable nature of sporting events, models that achieve around a 60–65% accuracy are considered strong.
+---
 
-# To run the project yourself, follow these steps.
+**train_model.py**  
+Builds the feature dataset, trains the machine learning model, evaluates accuracy, and saves the trained model.
 
-### 1 Clone the repository and cd into the root folder
-git clone https://github.com/YOUR_USERNAME/NBA-Game-Prediction-Model.git
+**predict_games.py**  
+Loads the trained model and generates predictions for today's NBA games using the most recent team statistics.
+
+---
+
+# How To Run The Project
+
+### 1. Clone the repo and cd into the root folder (from terminal) 
+git clone https://github.com/BryllieBrinkley/NBA-Game-Prediction-Model.git
+
 cd NBA-Game-Prediction-Model
 
-### 2. Install the required libraries (used for loading data, training the model, generating predictions)
-pip3 install pandas numpy scikit-learn xgboost nba_api requests joblib
+--
 
-### 3. Run the Prediction script 
-python3 src/predict_games.py
+### 2. Install required Python libraries
+pip install pandas numpy scikit-learn xgboost nba_api requests joblib
 
-### 4. (Optional) Train Model Yourself
-If you'd like to retrain the model using the historical data included in the repository:
-python3 src/train_model.py
+---
 
-### 5. Example Output
+### 3. Run predictions for today's games
 
-(python3 predict_games.py)
-Lakers vs Nuggets | Model: 0.49 | Vegas: 0.44 | Spread: +2.5 | Edge: +0.05 | Prediction: Nuggets | Home injuries: 0.0 | Away injuries: 0.0 | BET HOME
-Spurs vs Hornets | Model: 0.72 | Vegas: 0.68 | Spread: -6.5 | Edge: +0.05 | Prediction: Spurs | Home injuries: 0.0 | Away injuries: 0.0 | NO BET
-Warriors vs Timberwolves | Model: 0.52 | Vegas: 0.32 | Spread: +6.0 | Edge: +0.20 | Prediction: Warriors | Home injuries: 0.0 | Away injuries: 0.0 | BET HOME
-Celtics vs Wizards | Model: 0.83 | Vegas: 0.92 | Spread: -19.5 | Edge: -0.09 | Prediction: Celtics | Home injuries: 0.0 | Away injuries: 0.0 | BET AWAY
+python src/predict_games.py
 
-Author
-Jibryll Brinkley
+Example output:
+Warriors vs Suns | Model: 0.52 | Vegas: 0.48 | Spread: +2.5 | Edge: +0.04 | Prediction: Warriors
+
+---
+
+### 4. Train the model yourself (optional)
+
+If you want to retrain the model using the included dataset:
+python src/train_model.py
+
+
+This will:
+
+• rebuild the feature dataset  
+• train the model  
+• evaluate performance  
+• save the trained model to `/models/winner_model.pkl`
+
+---
+
+# Skills Demonstrated
+
+Machine Learning  
+Feature Engineering  
+Predictive Modeling  
+Python Development  
+Data Processing Pipelines  
+API Integration  
+Statistical Modeling  
+Sports Analytics  
+
+---
+
+# Future Improvements
+Future improvements to the project include:
+
+• Expanding the model to predict **game totals (over/under)**  
+• Testing additional models such as **XGBoost and ensemble approaches**  
+• Adding **automated backtesting against betting market odds**  
+• Building a **dashboard for visualizing predictions**
+
+---
+
+# Author
+
+**Jibryll Brinkley**
