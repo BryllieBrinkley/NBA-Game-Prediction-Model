@@ -1,83 +1,144 @@
 # NBA Game Prediction Model
 
 ## Overview
-This project is a production-ready machine learning pipeline for predicting NBA game outcomes. It leverages historical and live NBA data, advanced feature engineering, and state-of-the-art machine learning models to forecast game winners and (soon) point totals. The modular, extensible design makes it easy to experiment with new features, algorithms, and prediction tasks. This project demonstrates real-world data science, MLOps, and sports analytics skills using modern Python tools.
 
-## Features
-- Predicts NBA game winners using ensemble ML models (Random Forest, XGBoost, etc.)
-- Fetches and processes live betting odds
-- Integrates multi-season NBA data
-- Modular codebase for easy extension (add new models, features, or prediction tasks)
-- Ready for point total prediction and deep learning extensions
-- Automated data collection, preprocessing, training, and prediction workflows
+This project explores how machine learning can be used to predict **NBA game outcomes** using historical performance data.
 
-## Project Structure
-- **src/**: Core source code (data processing, model training, prediction)
-    - `get_games.py`: Fetches NBA game data and odds
-    - `process_games.py`: Cleans and prepares datasets
-    - `train_model.py`: Trains machine learning models
-    - `predict_games.py`: Runs predictions on upcoming games
-- **models/**: Trained model files (e.g., `winner_model.pkl`)
-- **data/**: Raw and processed datasets (CSV files)
+Using NBA game data from the **2019–2024 seasons (~10,000 games)**, I built an end-to-end machine learning pipeline that processes game data, engineers predictive features, trains models, and generates predictions for upcoming games.
 
-## Setup Instructions
-1. **Python Version**: 3.8 or higher
-2. **Install Dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-    _Key dependencies:_
-    - scikit-learn
-    - xgboost
-    - pandas
-    - nba_api
-    - (Optional for future work: pytorch, tensorflow, lightgbm)
-3. **Environment Variables**:
-    - Set API keys (e.g., `ODDS_API_KEY`) in your shell or a `.env` file.
+The current model achieved **67.8% accuracy predicting NBA game winners**, which is considered strong for sports prediction problems due to the naturally unpredictable nature of game outcomes.
 
-## Usage Examples
-**Train a Model:**
-```bash
-python src/train_model.py
-```
-**Predict Upcoming Games:**
-```bash
+The motivation behind this project was to apply my knowledge of **Python and machine learning** to a real-world dataset while building a complete system similar to what a machine learning engineer might develop in practice. As someone who has been passionate about basketball for many years and played growing up, this project was also a fun way to combine sports with data science.
+
+---
+
+# What This Project Does
+
+This system:
+
+• Collects historical NBA game data  
+• Engineers predictive features from past games  
+• Trains a machine learning model to predict game winners  
+• Uses the trained model to generate predictions for upcoming games  
+• Compares model probabilities with Vegas implied probabilities  
+
+The project is structured to make it easy to experiment with new features, models, and prediction methods.
+
+---
+
+# Machine Learning Approach
+
+The model predicts whether the **home team will win a game** using historical performance data.
+
+Feature engineering includes:
+
+• **Team Elo ratings** to estimate team strength over time  
+• **Rolling performance metrics** (points, rebounds, assists over recent games)  
+• **Offensive and defensive efficiency ratings**  
+• **Rest advantage and schedule difficulty**  
+• **Home court performance trends**  
+• **Matchup-based feature differences between teams**
+
+To simulate real prediction conditions, the model uses **time-aware feature engineering** and a **chronological train/test split**, ensuring that predictions only use information available before each game.
+
+---
+
+# Model Performance
+
+Dataset: **NBA games from 2019–2024 seasons (~10,000 games)**
+
+Model: **Random Forest Classifier**
+
+Performance:
+
+• **67.8% accuracy predicting NBA game winners**
+
+Because sports outcomes are inherently volatile, models that achieve **60–65% accuracy** are generally considered strong in sports analytics. The current model performs above that benchmark.
+
+---
+
+# Technologies Used
+
+- Python  
+- Pandas  
+- NumPy  
+- Scikit-Learn  
+- Random Forest
+- NBA API Integration
+- Joblib
+- Plans to test XGBoost and ensemble methods
+
+---
+
+**train_model.py**  
+Builds the feature dataset, trains the machine learning model, evaluates accuracy, and saves the trained model.
+
+**predict_games.py**  
+Loads the trained model and generates predictions for today's NBA games using the most recent team statistics.
+
+---
+
+# How To Run The Project
+
+### 1. Clone the repo and cd into the root folder (from terminal) 
+git clone https://github.com/BryllieBrinkley/NBA-Game-Prediction-Model.git
+
+cd NBA-Game-Prediction-Model
+
+--
+
+### 2. Install required Python libraries
+pip install pandas numpy scikit-learn xgboost nba_api requests joblib
+
+---
+
+### 3. Run predictions for today's games
+
 python src/predict_games.py
-```
-**Fetch and Process New Data:**
-```bash
-python src/get_games.py
-python src/process_games.py
-```
 
-## Sample Output
-```
-Today's Games Predictions
+Example output:
+Warriors vs Suns | Model: 0.52 | Vegas: 0.48 | Spread: +2.5 | Edge: +0.04 | Prediction: Warriors
 
-Lakers vs Celtics | Model: 0.67 | Vegas: 0.61 | Spread: -3.5 | Edge: +0.06 | Prediction: Lakers | Home injuries: 0.0 | Away injuries: 1.0 | BET HOME
-Warriors vs Suns | Model: 0.48 | Vegas: 0.52 | Spread: +2.0 | Edge: -0.04 | Prediction: Suns | Home injuries: 0.5 | Away injuries: 0.0 | NO BET
-```
+---
 
-## Extending the Project
-- **Point Total Prediction**: Add regression models and features for predicting total points (see `evaluate_totals_model` in `train_model.py`).
-- **New ML Frameworks**: Integrate PyTorch, TensorFlow, or LightGBM for advanced modeling.
-- **Custom Features**: Add new feature engineering steps in `src/` scripts.
-- **Web API or Dashboard**: Deploy predictions as a REST API (Flask/FastAPI) or interactive dashboard (Streamlit, Dash).
-- **CI/CD**: Add GitHub Actions for automated testing and deployment.
+### 4. Train the model yourself (optional)
 
-## Future Work / Roadmap
-- Point total prediction and betting signals
-- Deep learning models (PyTorch, TensorFlow)
-- Automated hyperparameter tuning
-- Web dashboard for live predictions
-- Continuous integration and deployment
-- Model and data versioning (DVC, MLflow)
+If you want to retrain the model using the included dataset:
+python src/train_model.py
 
-## Acknowledgements
-- **Data Sources**: [nba_api](https://github.com/swar/nba_api), public betting odds
-- **Libraries/Frameworks**: scikit-learn, xgboost, pandas, nba_api, pytorch, tensorflow, lightgbm
 
-## Contact & Contributions
-For questions or contributions, open an issue or submit a pull request.
+This will:
 
-Project maintained by [YOUR NAME OR GITHUB HANDLE]
+• rebuild the feature dataset  
+• train the model  
+• evaluate performance  
+• save the trained model to `/models/winner_model.pkl`
+
+---
+
+# Skills Demonstrated
+
+Machine Learning  
+Feature Engineering  
+Predictive Modeling  
+Python Development  
+Data Processing Pipelines  
+API Integration  
+Statistical Modeling  
+Sports Analytics  
+
+---
+
+# Future Improvements
+Future improvements to the project include:
+
+• Expanding the model to predict **game totals (over/under)**  
+• Testing additional models such as **XGBoost and ensemble approaches**  
+• Adding **automated backtesting against betting market odds**  
+• Building a **dashboard for visualizing predictions**
+
+---
+
+# Author
+
+**Jibryll Brinkley**
